@@ -96,12 +96,13 @@
     var prodName = $('.ProductTitle').find('h1').text() || 'this product';
 
       lpTag.events.bind('lpUnifiedWindow', 'state', (data) => { 
+         
          console.log(data);
-//if (waitingCounter < 1) {
+if (waitingCounter < 1) {
          if(data && data.state === 'waiting'){
             //set time out to wait for the window to load...
             setTimeout(()=>{
-            //  waitingCounter++
+              waitingCounter++
                console.log("state: "+ data.state);
                $('.lpview_form_textarea').val("I'm interested in " + prodName);
                $('.lp_send_button').prop('disabled', false).trigger('click'); 
@@ -109,7 +110,7 @@
             console.log('Should trigger show init menu here')
             
          }
-    // }
+     }
 });
       
       </script>
