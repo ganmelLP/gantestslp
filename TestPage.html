@@ -103,6 +103,7 @@ if (waitingCounter < 1) {
             //set time out to wait for the window to load...
             setTimeout(()=>{
                waitingCounter++
+               console.log("waitingCounter: "+ waitingCounter);
                console.log("state: "+ data.state);
                $('.lpview_form_textarea').val("I'm interested in " + prodName);
                $('.lp_send_button').prop('disabled', false).trigger('click'); 
