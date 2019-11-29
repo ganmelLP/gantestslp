@@ -93,26 +93,26 @@
 <script>
       lpTag.section = ['tenen-sales'];
       
-    var waitingCounter = 0;
-    var prodName = $('.ProductTitle').find('h1').text() || 'this product';
+var waitingCounter = 0;
+var prodName = $('.ProductTitle').find('h1').text() || 'this product'; // get the current product title or default to "this product"
 
-      lpTag.events.bind('lpUnifiedWindow', 'state', (data) => { 
-         
-         console.log(data);
-if (waitingCounter < 1) {
-         if(data && data.state === 'waiting'){
+lpTag.events.bind('lpUnifiedWindow', 'state', (data) => {
+
+    console.log(data);
+    if (waitingCounter < 1) {
+        if (data && data.state === 'waiting') {
             //set time out to wait for the window to load...
-            setTimeout(()=>{
-               waitingCounter++
-               console.log("waitingCounter: "+ waitingCounter);
-               console.log("state: "+ data.state);
-               $('.lpview_form_textarea').val("I'm interested in " + prodName);
-               $('.lp_send_button').prop('disabled', false).trigger('click'); 
+            setTimeout(() => {
+                waitingCounter++ // this is to make sure the message sent on the user's behalf is sent only once per page load (must either refresh or move to another page to reset)
+                console.log("waitingCounter: " + waitingCounter);
+                console.log("state: " + data.state);
+                $('.lpview_form_textarea').val("I'm interested in " + prodName);
+                $('.lp_send_button').prop('disabled', false).trigger('click');
             }, 500);
             console.log('Should trigger show init menu here')
-            
-         }
-     }
+
+        }
+    }
 });
       
       </script>
