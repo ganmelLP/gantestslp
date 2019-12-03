@@ -41,6 +41,21 @@
    let URL = 'https://www.mynamenecklace.com/Product.aspx?p=6378';
    let sections = ['tenen-sales'];
 
+           if(lpTag.sdes.push){
+       	lpTag.sdes.push({
+               "type": "prodView", //MANDATORY
+               "currency": "GBP", //CURRENCY CODE
+               "products": [{ //ARRAY OF PRODUCTS
+                    "product": {
+                         "name": "Russian Ring Necklace with Engraving", //PRODUCT NAME
+                         "category": "General", //PRODUCT CATEGORY NAME
+                         "sku": "110-01-1371-04", //PRODUCT SKU OR UNIQUE IDENTIFIER
+                         "price": "1000" //SINGLE PRODUCT PRICE
+                    }
+               }]
+          })
+      } else {console.log("SDES NOT SET")}
+
 
    function showCurrentPage() {
       var urlToPageTitleMappings = {
@@ -93,20 +108,7 @@
 
 <script>
   //$(document).ready(function () {
-        if(lpTag.sdes.send){
-       	lpTag.sdes.send({
-               "type": "prodView", //MANDATORY
-               "currency": "GBP", //CURRENCY CODE
-               "products": [{ //ARRAY OF PRODUCTS
-                    "product": {
-                         "name": "Russian Ring Necklace with Engraving", //PRODUCT NAME
-                         "category": "General", //PRODUCT CATEGORY NAME
-                         "sku": "110-01-1371-04", //PRODUCT SKU OR UNIQUE IDENTIFIER
-                         "price": "1000" //SINGLE PRODUCT PRICE
-                    }
-               }]
-          })
-      } else {console.log("SDES NOT SET")}
+
   //});
 	
       lpTag.section = ['tenen-sales'];
