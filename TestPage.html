@@ -91,6 +91,26 @@
 </script>
 
 <script>
+	
+     $(document).ready(function () {
+
+          // live person chat product page
+          lpTag.sdes = lpTag.sdes || [];
+
+          lpTag.sdes.push({
+               "type": "prodView", //MANDATORY
+               "currency": "GBP", //CURRENCY CODE
+               "products": [{ //ARRAY OF PRODUCTS
+                    "product": {
+                         "name": "Russian Ring Necklace with Engraving", //PRODUCT NAME
+                         "category": "General", //PRODUCT CATEGORY NAME
+                         "sku": "110-01-1371-04", //PRODUCT SKU OR UNIQUE IDENTIFIER
+                         "price": "1000" //SINGLE PRODUCT PRICE
+                    }
+               }]
+          });
+     });
+	
       lpTag.section = ['tenen-sales'];
       
 var waitingCounter = 0;
