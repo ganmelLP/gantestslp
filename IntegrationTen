@@ -1,0 +1,30 @@
+try{ 
+var getContextData = botContext.getBotVariable("api_appSessions");
+ var getContextJsonResponse = JSON.parse(getContextData.jsonData);
+
+var viewProduct = getContextJsonResponse.api_appSessions.appSessions[0].viewedProduct;
+var productName;
+if(viewProduct) {
+ productName = viewProduct[viewProduct.length-1].product.name;
+}
+// Retrieve the last url the user was on
+var pageUrlIndex = getContextJsonResponse.api_appSessions.appSessions[0].pages.length - 1;
+var startURL = getContextJsonResponse.api_appSessions.appSessions[0].pages[pageUrlIndex].url;
+
+// Code for proactive bot
+//var eventChange = getContextJsonResponse.api_appSessions.appSessions[0].events;
+//var affiliateName = eventChange[eventChange.length-1].marketingCampaignInfo.marketingCampaignInfo.affiliate;
+
+
+botContext.printDebugMessage(JSON.stringify(productName));
+  
+ //Code for proactive Bot 
+//botContext.printDebugMessage(JSON.stringify(affiliateName) + "  AFFILIATE");
+
+
+botContext.setBotVariable('startURL', startURL, true, false);
+botContext.setBotVariable('productName',productName,true,false);
+botContext.setBotVariable('affiliateName',productName,true,false);
+}catch(err){botContext.printDebugMessage(err+ "  ERROR INTERGRATION");
+}
+//botContext.printDebugMessage(JSON.stringify(getContextJsonResponse)); 
