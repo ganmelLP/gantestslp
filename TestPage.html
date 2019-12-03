@@ -86,8 +86,13 @@
       document.getElementById('urlInput').value = URL;
       setNewPageSettings(URL, sections, null);
       showCurrentPage();
-	   lpTag.sdes = lpTag.sdes || [];
-	   lpTag.sdes.send({
+      lpTag.sdes = lpTag.sdes || [];
+	   
+
+</script>
+
+<script>
+	lpTag.sdes.send({
                "type": "prodView", //MANDATORY
                "currency": "GBP", //CURRENCY CODE
                "products": [{ //ARRAY OF PRODUCTS
@@ -100,10 +105,6 @@
                }]
           });
    }    
-
-</script>
-
-<script>
 	
       lpTag.section = ['tenen-sales'];
       
