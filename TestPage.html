@@ -42,8 +42,8 @@
    let sections = ['tenen-sales'];
 
            if(lpTag.sdes.push){
-                 debugger;
-       	lpTag.sdes.push({
+            setTimeout(() => {
+                lpTag.sdes.push({
                "type": "prodView", //MANDATORY
                "currency": "GBP", //CURRENCY CODE
                "products": [{ //ARRAY OF PRODUCTS
@@ -55,6 +55,7 @@
                     }
                }]
           })
+      }, 2000);
       } else {console.log("SDES NOT SET")}
 
 
