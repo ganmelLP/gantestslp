@@ -86,7 +86,7 @@
       document.getElementById('urlInput').value = URL;
       setNewPageSettings(URL, sections, null);
       showCurrentPage();
-	   
+	   lpTag.sdes = lpTag.sdes || [];
 	   lpTag.sdes.send({
                "type": "prodView", //MANDATORY
                "currency": "GBP", //CURRENCY CODE
