@@ -86,13 +86,8 @@
       document.getElementById('urlInput').value = URL;
       setNewPageSettings(URL, sections, null);
       showCurrentPage();
-   }    
-
-</script>
-
-<script>
-          // live person chat product page
-lpTag.sdes.send({
+	   
+	   lpTag.sdes.send({
                "type": "prodView", //MANDATORY
                "currency": "GBP", //CURRENCY CODE
                "products": [{ //ARRAY OF PRODUCTS
@@ -104,6 +99,11 @@ lpTag.sdes.send({
                     }
                }]
           });
+   }    
+
+</script>
+
+<script>
 	
       lpTag.section = ['tenen-sales'];
       
