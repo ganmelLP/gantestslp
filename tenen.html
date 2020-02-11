@@ -19,19 +19,22 @@
 	
 	
 <script>
-	 lpTag.sdes.send({
-               "type": "prodView", //MANDATORY
-               "currency": "GBP", //CURRENCY CODE
-               "products": [{ //ARRAY OF PRODUCTS
-                    "product": {
-                         "name": "Russian Ring", //PRODUCT NAME
-                         "category": "General", //PRODUCT CATEGORY NAME
-                         "sku": "110-01-1371-04", //PRODUCT SKU OR UNIQUE IDENTIFIER
-                         "price": "0" //SINGLE PRODUCT PRICE
-                    }
-               }]
-          })
 	
+setTimeout(()=>{
+
+lpTag.sdes.send({
+  "type": "prodView", //MANDATORY
+  "currency": "GBP", //CURRENCY CODE
+  "products": [{ //ARRAY OF PRODUCTS
+       "product": {
+            "name": "Russian Ring", //PRODUCT NAME
+            "category": "General", //PRODUCT CATEGORY NAME
+            "sku": "110-01-1371-04", //PRODUCT SKU OR UNIQUE IDENTIFIER
+            "price": "0" //SINGLE PRODUCT PRICE
+       }
+  }]
+})
+}, 3000);
 	
  var waitingCounter = 0;
     var prodName = $('.ProductTitle').find('h1').text() || 'this product';
