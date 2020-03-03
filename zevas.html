@@ -14,5 +14,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <body>
+	
+	
+<script>
+	setTimeout(function(){ 
+
+    var livePersonBind = function(ev, data) {
+      if (data.appName === "LP_OFFERS" && data.eventName === "OFFER_IMPRESSION") {
+        console.log(ev.engagementId);
+        lpTag.taglets.rendererStub.click(ev.engagementId);
+      }
+    };
+
+    lpTag.events.bind({
+      eventName: "OFFER_IMPRESSION",
+      appName: "LP_OFFERS",
+      func: livePersonBind,
+      triggerOnce: false //default is false
+    })}, 6000);;
+</script>
+	
 </body>
   </html>
