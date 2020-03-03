@@ -21,7 +21,10 @@
       if (data.appName === "LP_OFFERS" && data.eventName === "OFFER_IMPRESSION") {
         console.log(ev.engagementId);
 	      var engId = ev.engagementId;
+	      setTimeout(function(){
+
         lpTag.taglets.rendererStub.click(engId);
+				    }, 6000);
       }
     };
 
