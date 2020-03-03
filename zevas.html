@@ -17,10 +17,11 @@
 	
 	
 <script>
-    var livePersonBind = function(ev, data) {
+    function livePersonBind(ev, data) {
       if (data.appName === "LP_OFFERS" && data.eventName === "OFFER_IMPRESSION") {
         console.log(ev.engagementId);
-        lpTag.taglets.rendererStub.click(ev.engagementId);
+	      var engId = ev.engagementId;
+        lpTag.taglets.rendererStub.click(engId);
       }
     };
 
