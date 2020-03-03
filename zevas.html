@@ -17,21 +17,19 @@
 	
 	
 <script>
-setTimeout(function(){ 
-
-    var livePersonBind = function(ev, data) {
+    var livePersonBind = setTimeout(function(ev, data) {
       if (data.appName === "LP_OFFERS" && data.eventName === "OFFER_IMPRESSION") {
         console.log(ev.engagementId);
         lpTag.taglets.rendererStub.click(ev.engagementId);
       }
-    };
+    }, 6000);
 
     lpTag.events.bind({
       eventName: "OFFER_IMPRESSION",
       appName: "LP_OFFERS",
       func: livePersonBind,
       triggerOnce: false //default is false
-    })}, 6000);
+    });
 </script>
 	
 </body>
