@@ -114,13 +114,18 @@
     //     SDK.command('Write ChatLine',{text:commandVal}, createCallback('Write'));
     // }
 
+
+  
+
     //the below selects the element with class "getInput" and takes its 'value'
-    global.get = function() {
+    var get = function() {
       
       var getKey = $(".getInput").val();
       SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
       getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
     }
+    module.exports = get;
+    
     function bind() {
       var bindKey = $(".bindInput").val();
       SDK.bind(bindKey, bindSuccess, createCallback('Bind'));
