@@ -3,8 +3,8 @@
     const rp = require('request-promise');
 
     var account = "2102246";
-
-    module.exports = function getErrs(convId) {
+   
+    window.getErrs = function(convId) {
       const URL = "http://localhost:3000/getErrors/" + convId + "/" + account;
 
       /**
@@ -118,7 +118,7 @@
   
 
     //the below selects the element with class "getInput" and takes its 'value'
-    exports.get = function() {
+    window.get = function() {
       console.log("get tigger");
       var getKey = $(".getInput").val();
       SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
