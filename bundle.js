@@ -115,7 +115,7 @@
     // }
 
     //the below selects the element with class "getInput" and takes its 'value'
-    module.exports = function get() {
+    global.get = function() {
       
       var getKey = $(".getInput").val();
       SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
