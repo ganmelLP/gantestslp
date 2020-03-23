@@ -80,9 +80,10 @@
       }
     }
 
-    module.exports = function bindUser() {
-      var bindId = "visitorInfo";
-      SDK.bind(bindId, processData, createCallback('Bind'));
+    window.bindUser = function() {
+      getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
+      //var bindId = "visitorInfo";
+      //SDK.bind(bindId, processData, createCallback('Bind'));
     }
     module.exports = function processData(data) {
       var visitorId = JSON.stringify(data.newValue.visitorId);
@@ -127,7 +128,6 @@
       console.log("get tigger");
       var getKey = $(".getInput").val();
       SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
-     getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
      //getErrs("b29669f5-a879-489d-9da6-54dab62d8e93")
     }
     //module.exports = get;
