@@ -4,32 +4,37 @@
 
     var account = "2102246";
    
-    window.getErrs = function(convId) {
-      const URL = "http://localhost:3000/getErrors/" + convId + "/" + account;
 
-      /**
-       * arguments: String array of command arguments.
-       * conversationId: The ID of the conversation in which the command was called.
-       */
+ 
 
-      console.log("CALLING API : " + URL);
 
-      var options = {
-        method: 'GET',
-        uri: URL
-      };
 
-      rp(options)
-        .then(function (parsedBody) {
-          console.log(parsedBody)
-          res.status(200).send("ParsedBody: " + parsedBody);
+    // window.getErrs = function(convId) {
+    //   const URL = "http://localhost:3000/getErrors/" + convId + "/" + account;
 
-        })
-        .catch(function (err) {
-          res.status(500).send(err)
-        });
+    //   /**
+    //    * arguments: String array of command arguments.
+    //    * conversationId: The ID of the conversation in which the command was called.
+    //    */
 
-    };
+    //   console.log("CALLING API : " + URL);
+
+    //   var options = {
+    //     method: 'GET',
+    //     uri: URL
+    //   };
+
+    //   rp(options)
+    //     .then(function (parsedBody) {
+    //       console.log(parsedBody)
+    //       res.status(200).send("ParsedBody: " + parsedBody);
+
+    //     })
+    //     .catch(function (err) {
+    //       res.status(500).send(err)
+    //     });
+
+    // };
 
     var SDK = lpTag.agentSDK || {};
     $(function () {
@@ -122,9 +127,37 @@
       console.log("get tigger");
       var getKey = $(".getInput").val();
       SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
-      getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
+     getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
+     //getErrs("b29669f5-a879-489d-9da6-54dab62d8e93")
     }
     //module.exports = get;
+
+    function getErrs(convId) {
+      const URL = "http://localhost:3000/getErrors/" + convId + "/" + account;
+
+      /**
+       * arguments: String array of command arguments.
+       * conversationId: The ID of the conversation in which the command was called.
+       */
+
+      console.log("CALLING API : " + URL);
+
+      var options = {
+        method: 'GET',
+        uri: URL
+      };
+
+      rp(options)
+        .then(function (parsedBody) {
+          console.log(parsedBody)
+          res.status(200).send("ParsedBody: " + parsedBody);
+
+        })
+        .catch(function (err) {
+          res.status(500).send(err)
+        });
+
+    };
 
     function bind() {
       var bindKey = $(".bindInput").val();
