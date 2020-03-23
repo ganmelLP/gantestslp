@@ -118,14 +118,14 @@
   
 
     //the below selects the element with class "getInput" and takes its 'value'
-    var get = function() {
-      
+    exports.get = function() {
+      console.log("get tigger");
       var getKey = $(".getInput").val();
       SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
       getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
     }
-    module.exports = get;
-    
+    //module.exports = get;
+
     function bind() {
       var bindKey = $(".bindInput").val();
       SDK.bind(bindKey, bindSuccess, createCallback('Bind'));
