@@ -52,8 +52,8 @@
     }
 
     window.bindUser = function() {
-      
       SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!'));
+      console.log(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
       // console.log(RTSID)
       // getErrs(RTSID);
       //var bindId = "visitorInfo";
@@ -168,8 +168,8 @@
 
     function getSuccess(data) {
       //the below selects an element and adds text by using the .html command
-      $(".getResults").html(JSON.stringify(data));
-      getLogFunction('INFO', 'Get success!')(data);
+      // $(".getResults").html(JSON.stringify(data));
+      // getLogFunction('INFO', 'Get success!')(data);
       console.log(data + " the success result")
       getErrs(data);
     }
