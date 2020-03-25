@@ -53,7 +53,7 @@
 
     window.bindUser = function() {
       SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!'));
-      console.log(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
+      //console.log(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
       // console.log(RTSID)
       // getErrs(RTSID);
       //var bindId = "visitorInfo";
