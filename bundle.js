@@ -5,36 +5,7 @@
     var account = "2102246";
    
 
- 
 
-
-
-    // window.getErrs = function(convId) {
-    //   const URL = "http://localhost:3000/getErrors/" + convId + "/" + account;
-
-    //   /**
-    //    * arguments: String array of command arguments.
-    //    * conversationId: The ID of the conversation in which the command was called.
-    //    */
-
-    //   console.log("CALLING API : " + URL);
-
-    //   var options = {
-    //     method: 'GET',
-    //     uri: URL
-    //   };
-
-    //   rp(options)
-    //     .then(function (parsedBody) {
-    //       console.log(parsedBody)
-    //       res.status(200).send("ParsedBody: " + parsedBody);
-
-    //     })
-    //     .catch(function (err) {
-    //       res.status(500).send(err)
-    //     });
-
-    // };
 
     var SDK = lpTag.agentSDK || {};
     $(function () {
@@ -45,30 +16,30 @@
       });
     });
 
-    var userSelections;
+    // var userSelections;
 
-    function setUserSelections(firstChoice, secondChoice, thirdChoice) {
-      userSelections = {
-        "firstChoice": firstChoice,
-        "secondChoice": secondChoice,
-        "thirdChoice": thirdChoice
-      }
+    // function setUserSelections(firstChoice, secondChoice, thirdChoice) {
+    //   userSelections = {
+    //     "firstChoice": firstChoice,
+    //     "secondChoice": secondChoice,
+    //     "thirdChoice": thirdChoice
+    //   }
 
-      return console.log("Variables assigned");
-    }
+    //   return console.log("Variables assigned");
+    // }
 
-    function getUserSelections() {
-      return userSelections;
-    }
+    // function getUserSelections() {
+    //   return userSelections;
+    // }
 
-    module.exports = function selection() {
-      var firstChoice = $('.dropDown1').val();
-      var secondChoice = $('.dropDown2').val();
-      var thirdChoice = $('.dropDown3').val();
-      setUserSelections(firstChoice, secondChoice, thirdChoice);
-      $(".agentChoice").html(JSON.stringify(getUserSelections()));
+    // module.exports = function selection() {
+    //   var firstChoice = $('.dropDown1').val();
+    //   var secondChoice = $('.dropDown2').val();
+    //   var thirdChoice = $('.dropDown3').val();
+    //   setUserSelections(firstChoice, secondChoice, thirdChoice);
+    //   $(".agentChoice").html(JSON.stringify(getUserSelections()));
 
-    }
+    // }
 
 
     function getLogFunction(type, message) {
@@ -81,42 +52,43 @@
     }
 
     window.bindUser = function() {
+      getErrs("b29669f5-a879-489d-9da6-54dab62d8e93");
       SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!'));
       // console.log(RTSID)
       // getErrs(RTSID);
       //var bindId = "visitorInfo";
       //SDK.bind(bindId, processData, createCallback('Bind'));
     }
-    module.exports = function processData(data) {
-      var visitorId = JSON.stringify(data.newValue.visitorId);
-      var visitorDevice = JSON.stringify(data.newValue.device);
-      var visitorOS = JSON.stringify(data.newValue.operatingSystem);
-      var OS = visitorOS.split(" ")[0].replace(/['"]+/g, '');
-      console.log(OS);
-      // var userOS = visitorOS.replace(/['"]+/g, '').toLower();
-      // var userOS = visitorOS.length;
-      $(".userId").html("Visitor ID: " + visitorId);
-      $(".userDevice").html(visitorDevice);
-      $(".userOS").html(visitorOS);
-      // var userOS = visitorOS.replace(/['"]+/g, '').split(" ")[0].toLower();
-      // var userOS = visitorOS.split(" ")[0].toLower();
+    // module.exports = function processData(data) {
+    //   var visitorId = JSON.stringify(data.newValue.visitorId);
+    //   var visitorDevice = JSON.stringify(data.newValue.device);
+    //   var visitorOS = JSON.stringify(data.newValue.operatingSystem);
+    //   var OS = visitorOS.split(" ")[0].replace(/['"]+/g, '');
+    //   console.log(OS);
+    //   // var userOS = visitorOS.replace(/['"]+/g, '').toLower();
+    //   // var userOS = visitorOS.length;
+    //   $(".userId").html("Visitor ID: " + visitorId);
+    //   $(".userDevice").html(visitorDevice);
+    //   $(".userOS").html(visitorOS);
+    //   // var userOS = visitorOS.replace(/['"]+/g, '').split(" ")[0].toLower();
+    //   // var userOS = visitorOS.split(" ")[0].toLower();
 
-      console.log("USER OS: " + OS + " " + visitorOS.length);
+    //   console.log("USER OS: " + OS + " " + visitorOS.length);
 
-      //for some reason having the variable "userOS" or the method .toLower, broke the function at the point where either of these were... WTF
-      if (OS === "Windows" || OS === "WINDOWS") {
-        //.userOS button goes blue
-        $(".userOS").css({ "background-color": "blue" });
-      }
-      else if (OS === "ANDROID") {
-        //.userOS button goes green
-        $(".userOS").css({ 'background-color': 'green' });
-      }
-      else if (OS === "OSX") {
-        $('.userOS').css({ "background-color": "white" });
-      }
-      getLogFunction('INFO', 'bind success!')(data);
-    }
+    //   //for some reason having the variable "userOS" or the method .toLower, broke the function at the point where either of these were... WTF
+    //   if (OS === "Windows" || OS === "WINDOWS") {
+    //     //.userOS button goes blue
+    //     $(".userOS").css({ "background-color": "blue" });
+    //   }
+    //   else if (OS === "ANDROID") {
+    //     //.userOS button goes green
+    //     $(".userOS").css({ 'background-color': 'green' });
+    //   }
+    //   else if (OS === "OSX") {
+    //     $('.userOS').css({ "background-color": "white" });
+    //   }
+    //   getLogFunction('INFO', 'bind success!')(data);
+    // }
     // function writeCommand() {
     //     var commandVal = $(".commandInput").val();
     //     SDK.command('Write ChatLine',{text:commandVal}, createCallback('Write'));
@@ -127,11 +99,12 @@
 
     //the below selects the element with class "getInput" and takes its 'value'
     window.get = function() {
-      console.log("get tigger");
-      var getKey = $(".getInput").val();
-      SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
-     getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
-     //getErrs("b29669f5-a879-489d-9da6-54dab62d8e93")
+     // console.log("get tigger");
+     // var getKey = $(".getInput").val();
+    //  SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
+    // getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
+    // getErrs("b29669f5-a879-489d-9da6-54dab62d8e93")
+
     }
     //module.exports = get;
 
@@ -152,55 +125,65 @@
 
       rp(options)
         .then(function (parsedBody) {
-          console.log(parsedBody)
-          res.status(200).send("ParsedBody: " + parsedBody);
+
+        try{
+          var parsy = window.JSON.parse(parsedBody);
+          const entries = Object.entries(parsy)
+          console.log(entries)
+
+          for (const [errFrom, errDetail] of entries) {
+            console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
+            $( ".showMaven" ).append( ` <p> ${errFrom} :שגיאה הגיעה מ  <br>  ${errDetail} :פרטי השגיאה הם </p>`  );
+          }
+
+        }catch(e) {console.log(e);}
+          return parsedBody;
 
         })
         .catch(function (err) {
-          res.status(500).send(err)
+         return console.log(err)
         });
 
     };
 
-    function bind() {
-      var bindKey = $(".bindInput").val();
-      SDK.bind(bindKey, bindSuccess, createCallback('Bind'));
-    }
-    function unbind() {
-      clearLogger();
-      var bindKey = $(".bindInput").val();
-      SDK.unbind(bindKey, bindSuccess, createCallback('Unbind'));
-    }
+    // function bind() {
+    //   var bindKey = $(".bindInput").val();
+    //   SDK.bind(bindKey, bindSuccess, createCallback('Bind'));
+    // }
+    // function unbind() {
+    //   clearLogger();
+    //   var bindKey = $(".bindInput").val();
+    //   SDK.unbind(bindKey, bindSuccess, createCallback('Unbind'));
+    // }
 
-    function createCallback(name) {
-      return function (error) {
-        if (error) {
-          getLogFunction('ERROR', 'Error in ' + name + '!')(error);
-        } else {
-          getLogFunction('INFO', name + ' success!')();
-        }
-      }
-    }
+    // function createCallback(name) {
+    //   return function (error) {
+    //     if (error) {
+    //       getLogFunction('ERROR', 'Error in ' + name + '!')(error);
+    //     } else {
+    //       getLogFunction('INFO', name + ' success!')();
+    //     }
+    //   }
+    // }
 
     function getSuccess(data) {
       //the below selects an element and adds text by using the .html command
       $(".getResults").html(JSON.stringify(data));
       getLogFunction('INFO', 'Get success!')(data);
       console.log(data + " the success result")
-      getErrs(data);
     }
-    function bindSuccess(data) {
-      $(".bindResults").html(JSON.stringify(data));
-      getLogFunction('INFO', 'Bind success!')(data);
-    }
+    // function bindSuccess(data) {
+    //   $(".bindResults").html(JSON.stringify(data));
+    //   getLogFunction('INFO', 'Bind success!')(data);
+    // }
 
-    function logger(type, text) {
-      if (typeof text === 'object') {
-        text = JSON.stringify(text, null, 2);
-      }
-      var area = $(".logBox textarea");
-      area.val(new Date().toTimeString() + ":  " + type + " - " + text + '\n' + area.val());
-    }
+    // function logger(type, text) {
+    //   if (typeof text === 'object') {
+    //     text = JSON.stringify(text, null, 2);
+    //   }
+    //   var area = $(".logBox textarea");
+    //   area.val(new Date().toTimeString() + ":  " + type + " - " + text + '\n' + area.val());
+    // }
 
   }, { "request-promise": 130 }], 2: [function (require, module, exports) {
     'use strict';
