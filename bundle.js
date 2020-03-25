@@ -52,7 +52,7 @@
     }
 
     window.bindUser = function() {
-      getErrs("b29669f5-a879-489d-9da6-54dab62d8e93");
+      
       SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!'));
       // console.log(RTSID)
       // getErrs(RTSID);
@@ -171,6 +171,7 @@
       $(".getResults").html(JSON.stringify(data));
       getLogFunction('INFO', 'Get success!')(data);
       console.log(data + " the success result")
+      getErrs(data);
     }
     // function bindSuccess(data) {
     //   $(".bindResults").html(JSON.stringify(data));
