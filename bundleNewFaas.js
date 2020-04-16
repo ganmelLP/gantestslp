@@ -129,11 +129,10 @@
       rp(options)
         .then(function (parsedBody) {
           try {
-            console.log("token: " + window.JSON.stringify(parsedBody));
             var tokenResultString = window.JSON.stringify(parsedBody);
             var tokenFullResult = window.JSON.parse(tokenResultString);
             var token = tokenFullResult.access_token;
-            console.log("token: " + token);
+
 
             var options2 = {
               method: 'POST',
@@ -158,7 +157,7 @@
               .then(function (parsedBody2) {
 
                 try {
-                  console.log("before anything !: " + parsedBody2);
+                  console.log("Response from FaaS/Maven " + parsedBody2);
 
                   var parseda = JSON.parse(parsedBody2);
 
