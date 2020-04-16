@@ -172,6 +172,7 @@
         .then(function (parsedBody) {
 
         try{
+          console.log(parsedBody)
           var parsy = window.JSON.parse(parsedBody);
           const entries = Object.entries(parsy)
           console.log(entries)
