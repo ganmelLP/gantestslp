@@ -167,7 +167,7 @@
 
                   for (const [errFrom, errDetail] of entries) {
                     console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
-                    $(".showMaven").append(` <p> ${errFrom} :שגיאה הגיעה מ  <br>  ${errDetail} :פרטי השגיאה הם </p>`);
+                    $(".showMaven").append(`  <p>${errFrom}</p>  <p>:שגיאה הגיעה מ </p>   <p> ${errDetail} </p> <p>:פרטי השגיאה הם </p>`);
                   }
 
                 } catch (e) { console.log("err from inside 2nd req" + e); }
