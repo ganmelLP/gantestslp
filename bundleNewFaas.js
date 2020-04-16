@@ -3,7 +3,7 @@
     const rp = require('request-promise');
 
     var account = "2102246";
-   
+
 
 
 
@@ -51,8 +51,8 @@
       }
     }
 
-    window.bindUser = function() {
-      SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!'));
+    window.bindUser = function () {
+      SDK.get("chatInfo.rtSessionId", getSuccess, getLogFunction('ERROR', 'Error in get!'));
       //console.log(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
       // console.log(RTSID)
       // getErrs(RTSID);
@@ -95,21 +95,20 @@
     // }
 
 
-  
+
 
     //the below selects the element with class "getInput" and takes its 'value'
-    window.get = function() {
-     // console.log("get tigger");
-     // var getKey = $(".getInput").val();
-    //  SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
-    // getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
-    // getErrs("b29669f5-a879-489d-9da6-54dab62d8e93")
+    window.get = function () {
+      // console.log("get tigger");
+      // var getKey = $(".getInput").val();
+      //  SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
+      // getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
+      // getErrs("b29669f5-a879-489d-9da6-54dab62d8e93")
 
     }
     //module.exports = get;
-    function getTokenFaas() {
+    window.getTokenFaas = async function getTokenFaas() {
       const geTokenURL = "https://lo.sentinel.liveperson.net/sentinel/api/account/8300697/app/token?v=2.0.&grant_type=client_credentials&client_id=4a17add4-56ee-4954-a3ab-7e7b260ffcef&client_secret=5a9vv63k4aun1k5np0s08vn499";
-
       /**
        * arguments: String array of command arguments.
        * conversationId: The ID of the conversation in which the command was called.
@@ -120,27 +119,75 @@
       var options = {
         method: 'POST',
         uri: geTokenURL,
-        headers:{
+        headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    };
+        },
+        body: window.JSON.stringify({}),
+        json: true // Automatically stringifies the body to JSON
+      };
 
       rp(options)
-        .then(function (parsedBody) {     
-        try{
-          var tokenFullResult = window.JSON.parse(parsedBody);
-          var token = tokenFullResult.access_token;
+        .then(function (parsedBody) {
+          try {
+            console.log("token: " + window.JSON.stringify(parsedBody));
+            var tokenResultString = window.JSON.stringify(parsedBody);
+            var tokenFullResult = window.JSON.parse(tokenResultString);
+            var token = tokenFullResult.access_token;
+            console.log("token: " + token);
 
-        }catch(e) {console.log(e);}
+            var options2 = {
+              method: 'POST',
+              uri: "https://lo.faasgw.liveperson.net/api/account/8300697/lambdas/5cd4ef50-5711-4d77-bfbf-876e1da07a96/invoke?v=1",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+              },
+              body: window.JSON.stringify({
+                "headers": [],
+                "payload": {
+                  "conversationId": "b29669f5-a879-489d-9da6-54dab62d8e93"
+                },
+                "timestamp": new Date().getTime()
+              }
+
+              ),
+              //json: true // Automatically stringifies the body to JSON
+            };
+
+            rp(options2)
+              .then(function (parsedBody2) {
+
+                try {
+                  console.log("before anything !: " + parsedBody2);
+
+                  var parseda = JSON.parse(parsedBody2);
+
+                 const entries = Object.entries(parseda)
+                 console.log(entries)
+
+                  for (const [errFrom, errDetail] of entries) {
+                    console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
+                    $(".showMaven").append(` <p> ${errFrom} :שגיאה הגיעה מ  <br>  ${errDetail} :פרטי השגיאה הם </p>`);
+                  }
+
+                } catch (e) { console.log("err from inside 2nd req" + e); }
+                return parsedBody2;
+
+              })
+              .catch(function (err) {
+                return console.log(err)
+              });
+
+          } catch (e) { console.log(e); }
           return token;
 
         })
         .catch(function (err) {
-         return console.log(err)
+          return console.log(err)
         });
 
     };
-   async function getErrs(convId) {
+    window.getErrs = async function getErrs(convId) {
       const getErrsURL = "https://lo.faasgw.liveperson.net/api/account/8300697/lambdas/5cd4ef50-5711-4d77-bfbf-876e1da07a96/invoke?v=1";
 
       /**
@@ -148,46 +195,47 @@
        * convId: The ID of the conversation in which the command was called.
        */
 
-       var faasToken = await getTokenFaas();
+      var faasToken = await getTokenFaas();
+      console.log("FAAS TOKEN : " + faasToken);
 
       console.log("CALLING API : " + getErrsURL);
 
       var options = {
         method: 'POST',
         uri: getErrsURL,
-        headers:{
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': faasToken
         },
-        body: {
-            "headers": [],
-            "payload": {
-          "conversationId":convId
+        body: window.JSON.stringify({
+          "headers": [],
+          "payload": {
+            "conversationId": convId
           }
-        },
-      //  json: true // Automatically stringifies the body to JSON
-    };
+        }),
+        json: true // Automatically stringifies the body to JSON
+      };
 
       rp(options)
         .then(function (parsedBody) {
 
-        try{
-          console.log(parsedBody)
-          var parsy = window.JSON.parse(parsedBody);
-          const entries = Object.entries(parsy)
-          console.log(entries)
+          try {
+            console.log(parsedBody)
+            var parsy = window.JSON.parse(parsedBody);
+            const entries = Object.entries(parsy)
+            console.log(entries)
 
-          for (const [errFrom, errDetail] of entries) {
-            console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
-            $( ".showMaven" ).append( ` <p> ${errFrom} :שגיאה הגיעה מ  <br>  ${errDetail} :פרטי השגיאה הם </p>`  );
-          }
+            for (const [errFrom, errDetail] of entries) {
+              console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
+              $(".showMaven").append(` <p> ${errFrom} :שגיאה הגיעה מ  <br>  ${errDetail} :פרטי השגיאה הם </p>`);
+            }
 
-        }catch(e) {console.log(e);}
+          } catch (e) { console.log(e); }
           return parsedBody;
 
         })
         .catch(function (err) {
-         return console.log(err)
+          return console.log(err)
         });
 
     };
