@@ -107,7 +107,7 @@
 
     }
     //module.exports = get;
-    window.getTokenFaas = async function getTokenFaas() {
+    window.getTokenFaas = async function getTokenFaas(convid) {
       const geTokenURL = "https://lo.sentinel.liveperson.net/sentinel/api/account/8300697/app/token?v=2.0.&grant_type=client_credentials&client_id=4a17add4-56ee-4954-a3ab-7e7b260ffcef&client_secret=5a9vv63k4aun1k5np0s08vn499";
       /**
        * arguments: String array of command arguments.
@@ -145,7 +145,7 @@
               body: window.JSON.stringify({
                 "headers": [],
                 "payload": {
-                  "conversationId": "b29669f5-a879-489d-9da6-54dab62d8e93"
+                  "conversationId": convid
                 },
                 "timestamp": new Date().getTime()
               }
@@ -265,7 +265,7 @@
       // $(".getResults").html(JSON.stringify(data));
       // getLogFunction('INFO', 'Get success!')(data);
       console.log(data + " the success result")
-      getErrs(data);
+      getTokenFaas(data);
     }
     // function bindSuccess(data) {
     //   $(".bindResults").html(JSON.stringify(data));
