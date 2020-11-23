@@ -157,7 +157,7 @@
               .then(function (parsedBody2) {
 
                 try {
-                  console.log("Response from FaaS/Maven: " + parsedBody2);
+                  console.log(parsedBody2);
 
                   if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 == '"{}"') == false ) {
                     console.log("Maven result NOT EMPTY: " + parsedBody2 +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + (parsedBody2 == '"{}"'));
