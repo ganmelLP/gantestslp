@@ -160,7 +160,7 @@
                   console.log("Response from FaaS/Maven " + parsedBody2);
 
                   if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 !== "{}")){
-
+                    console.log("Maven result NOT EMPTY: " + parsedBody2);
                   var parseda = JSON.parse(parsedBody2);
 
                  const entries = Object.entries(parseda)
@@ -206,58 +206,58 @@
         });
 
     };
-    window.getErrs = async function getErrs(convId) {
-      const getErrsURL = "https://lo.faasgw.liveperson.net/api/account/8300697/lambdas/5cd4ef50-5711-4d77-bfbf-876e1da07a96/invoke?v=1";
+    // window.getErrs = async function getErrs(convId) {
+    //   const getErrsURL = "https://lo.faasgw.liveperson.net/api/account/8300697/lambdas/5cd4ef50-5711-4d77-bfbf-876e1da07a96/invoke?v=1";
 
-      /**
-       * arguments: String array of command arguments.
-       * convId: The ID of the conversation in which the command was called.
-       */
+    //   /**
+    //    * arguments: String array of command arguments.
+    //    * convId: The ID of the conversation in which the command was called.
+    //    */
 
-      var faasToken = await getTokenFaas();
-      console.log("FAAS TOKEN : " + faasToken);
+    //   var faasToken = await getTokenFaas();
+    //   console.log("FAAS TOKEN : " + faasToken);
 
-      console.log("CALLING API : " + getErrsURL);
+    //   console.log("CALLING API : " + getErrsURL);
 
-      var options = {
-        method: 'POST',
-        uri: getErrsURL,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': faasToken
-        },
-        body: window.JSON.stringify({
-          "headers": [],
-          "payload": {
-            "conversationId": convId
-          }
-        }),
-        json: true // Automatically stringifies the body to JSON
-      };
+    //   var options = {
+    //     method: 'POST',
+    //     uri: getErrsURL,
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Authorization': faasToken
+    //     },
+    //     body: window.JSON.stringify({
+    //       "headers": [],
+    //       "payload": {
+    //         "conversationId": convId
+    //       }
+    //     }),
+    //     json: true // Automatically stringifies the body to JSON
+    //   };
 
-      rp(options)
-        .then(function (parsedBody) {
+    //   rp(options)
+    //     .then(function (parsedBody) {
 
-          try {
-            console.log(parsedBody)
-            var parsy = window.JSON.parse(parsedBody);
-            const entries = Object.entries(parsy)
-            console.log(entries)
+    //       try {
+    //         console.log(parsedBody)
+    //         var parsy = window.JSON.parse(parsedBody);
+    //         const entries = Object.entries(parsy)
+    //         console.log(entries)
 
-            for (const [errFrom, errDetail] of entries) {
-              console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
-              $(".showMaven").append(` <p> ${errFrom} :שגיאה הגיעה מ  <br>  ${errDetail} :פרטי השגיאה הם </p>`);
-            }
+    //         for (const [errFrom, errDetail] of entries) {
+    //           console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
+    //           $(".showMaven").append(` <p> ${errFrom} :שגיאה הגיעה מ  <br>  ${errDetail} :פרטי השגיאה הם </p>`);
+    //         }
 
-          } catch (e) { console.log(e); }
-          return parsedBody;
+    //       } catch (e) { console.log(e); }
+    //       return parsedBody;
 
-        })
-        .catch(function (err) {
-          return console.log(err)
-        });
+    //     })
+    //     .catch(function (err) {
+    //       return console.log(err)
+    //     });
 
-    };
+    // };
 
     // function bind() {
     //   var bindKey = $(".bindInput").val();
