@@ -162,10 +162,10 @@
                   if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 == '"{}"') == false ) {
                     console.log("Maven result NOT EMPTY: " + parsedBody2 +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + (parsedBody2 == '"{}"'));
                     
-                    var parseda = JSON.parse(parsedBody2);
+                    var parseda = await JSON.parse(parsedBody2);
                     console.log("Parsed Result: " + parseda);
 
-                    var divdedToEntries = Object.entries(parseda)
+                    var divdedToEntries = await Object.entries(parseda)
                     console.log("Object Entries on Result: " + divdedToEntries)
 
 
