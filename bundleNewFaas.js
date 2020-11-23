@@ -164,8 +164,8 @@
                     
                     var parseda = JSON.parse(parsedBody2);
                     console.log("Parsed Result: " + parseda);
-
-                    const entries = Object.entries(parseda)
+                    
+                    var entries = Object.entries(parseda)
                     console.log("Object Entries on Result: " +entries)
 
 
