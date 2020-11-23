@@ -127,7 +127,7 @@
       };
 
       rp(options)
-        .then(function (parsedBody) {
+        .then(async function (parsedBody) {
           try {
             var tokenResultString = window.JSON.stringify(parsedBody);
             var tokenFullResult = window.JSON.parse(tokenResultString);
