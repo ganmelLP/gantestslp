@@ -88,7 +88,7 @@
               .then(function (parsedBody2) {
 
                 try {
-                  console.log("Response from FaaS/Maven " + parsedBody2);
+                  console.log("Response from FaaS/Maven: " + parsedBody2);
 
                   var parseda = JSON.parse(parsedBody2);
 

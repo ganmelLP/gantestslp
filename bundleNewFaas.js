@@ -1,7 +1,7 @@
 (function () { function r(e, n, t) { function o(i, f) { if (!n[i]) { if (!e[i]) { var c = "function" == typeof require && require; if (!f && c) return c(i, !0); if (u) return u(i, !0); var a = new Error("Cannot find module '" + i + "'"); throw a.code = "MODULE_NOT_FOUND", a } var p = n[i] = { exports: {} }; e[i][0].call(p.exports, function (r) { var n = e[i][1][r]; return o(n || r) }, p, p.exports, r, e, n, t) } return n[i].exports } for (var u = "function" == typeof require && require, i = 0; i < t.length; i++)o(t[i]); return o } return r })()({
   1: [function (require, module, exports) {
     const rp = require('request-promise');
-    
+
     var account = "2102246";
 
 
@@ -159,17 +159,17 @@
                 try {
                   console.log("Response from FaaS/Maven: " + parsedBody2);
 
-                  if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 !== "{}")){
-                    console.log("Maven result NOT EMPTY: " + parsedBody2);
-                  var parseda = JSON.parse(parsedBody2);
+                  if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 !== "{}")) {
+                    console.log("Maven result NOT EMPTY: " + parsedBody2 +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + parsedBody2 !== "{}");
+                    var parseda = JSON.parse(parsedBody2);
 
-                 const entries = Object.entries(parseda)
-                 console.log(entries)
-                
-                 
-                  for (const [errFrom, errDetail] of entries) {
-                    console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
-                    $(".showMaven").append(`
+                    const entries = Object.entries(parseda)
+                    console.log(entries)
+
+
+                    for (const [errFrom, errDetail] of entries) {
+                      console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
+                      $(".showMaven").append(`
 
                     <p>  
                     
@@ -186,8 +186,8 @@
                     </p>  
                     
                     `);
-                  }
-                } else {console.log("Maven result is empty: " + parsedBody2)}
+                    }
+                  } else { console.log("Maven result is empty: " + parsedBody2) }
 
                 } catch (e) { console.log("err from inside 2nd req" + e); }
                 return parsedBody2;
