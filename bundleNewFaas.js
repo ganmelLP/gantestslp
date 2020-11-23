@@ -160,7 +160,7 @@
                   console.log("Response from FaaS/Maven: " + parsedBody2);
 
                   if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 !== "{}")) {
-                    console.log("Maven result NOT EMPTY: " + parsedBody2 +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + parsedBody2 !== "{}");
+                    console.log("Maven result NOT EMPTY: " + parsedBody2 +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + (parsedBody2 !== "{}"));
                     var parseda = JSON.parse(parsedBody2);
 
                     const entries = Object.entries(parseda)
