@@ -154,7 +154,7 @@
             };
 
             rp(options2)
-              .then(function (parsedBody2) {
+              .then(async function (parsedBody2) {
 
                 try {
                   console.log("Response from FaaS/Maven: " + parsedBody2);
