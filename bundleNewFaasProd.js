@@ -2,10 +2,6 @@
   1: [function (require, module, exports) {
     const rp = require('request-promise');
     
-    var account = "2102246";
-
-
-
 
     var SDK = lpTag.agentSDK || {};
     $(function () {
@@ -16,30 +12,7 @@
       });
     });
 
-    // var userSelections;
 
-    // function setUserSelections(firstChoice, secondChoice, thirdChoice) {
-    //   userSelections = {
-    //     "firstChoice": firstChoice,
-    //     "secondChoice": secondChoice,
-    //     "thirdChoice": thirdChoice
-    //   }
-
-    //   return console.log("Variables assigned");
-    // }
-
-    // function getUserSelections() {
-    //   return userSelections;
-    // }
-
-    // module.exports = function selection() {
-    //   var firstChoice = $('.dropDown1').val();
-    //   var secondChoice = $('.dropDown2').val();
-    //   var thirdChoice = $('.dropDown3').val();
-    //   setUserSelections(firstChoice, secondChoice, thirdChoice);
-    //   $(".agentChoice").html(JSON.stringify(getUserSelections()));
-
-    // }
 
 
     function getLogFunction(type, message) {
@@ -53,60 +26,16 @@
 
     window.bindUser = function () {
       SDK.get("chatInfo.rtSessionId", getSuccess, getLogFunction('ERROR', 'Error in get!'));
-      //console.log(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
-      // console.log(RTSID)
-      // getErrs(RTSID);
-      //var bindId = "visitorInfo";
-      //SDK.bind(bindId, processData, createCallback('Bind'));
+ 
     }
-    // module.exports = function processData(data) {
-    //   var visitorId = JSON.stringify(data.newValue.visitorId);
-    //   var visitorDevice = JSON.stringify(data.newValue.device);
-    //   var visitorOS = JSON.stringify(data.newValue.operatingSystem);
-    //   var OS = visitorOS.split(" ")[0].replace(/['"]+/g, '');
-    //   console.log(OS);
-    //   // var userOS = visitorOS.replace(/['"]+/g, '').toLower();
-    //   // var userOS = visitorOS.length;
-    //   $(".userId").html("Visitor ID: " + visitorId);
-    //   $(".userDevice").html(visitorDevice);
-    //   $(".userOS").html(visitorOS);
-    //   // var userOS = visitorOS.replace(/['"]+/g, '').split(" ")[0].toLower();
-    //   // var userOS = visitorOS.split(" ")[0].toLower();
 
-    //   console.log("USER OS: " + OS + " " + visitorOS.length);
-
-    //   //for some reason having the variable "userOS" or the method .toLower, broke the function at the point where either of these were... WTF
-    //   if (OS === "Windows" || OS === "WINDOWS") {
-    //     //.userOS button goes blue
-    //     $(".userOS").css({ "background-color": "blue" });
-    //   }
-    //   else if (OS === "ANDROID") {
-    //     //.userOS button goes green
-    //     $(".userOS").css({ 'background-color': 'green' });
-    //   }
-    //   else if (OS === "OSX") {
-    //     $('.userOS').css({ "background-color": "white" });
-    //   }
-    //   getLogFunction('INFO', 'bind success!')(data);
-    // }
-    // function writeCommand() {
-    //     var commandVal = $(".commandInput").val();
-    //     SDK.command('Write ChatLine',{text:commandVal}, createCallback('Write'));
-    // }
-
-
-
-
-    //the below selects the element with class "getInput" and takes its 'value'
+    
     window.get = function () {
-      // console.log("get tigger");
-      // var getKey = $(".getInput").val();
-      //  SDK.get(getKey, getSuccess, getLogFunction('ERROR', 'Error in get!'));
-      // getErrs(SDK.get("chatInfo.rtSessionId",getSuccess,getLogFunction('ERROR', 'Error in get!')));
-      // getErrs("b29669f5-a879-489d-9da6-54dab62d8e93")
 
     }
-    //module.exports = get;
+
+
+    
     window.getTokenFaas = async function getTokenFaas(convid) {
       const geTokenURL = "https://lo.sentinel.liveperson.net/sentinel/api/account/90530803/app/token?v=2.0.&grant_type=client_credentials&client_id=7ec1d6f1-cbea-40eb-8525-f9fe93175103&client_secret=hihrvlr1o636neekdkqe30gt0r";
       /**
@@ -126,6 +55,7 @@
         json: true // Automatically stringifies the body to JSON
       };
 
+       //Get Token from FaaS
       rp(options)
         .then(function (parsedBody) {
           try {
@@ -153,6 +83,7 @@
               //json: true // Automatically stringifies the body to JSON
             };
 
+             // Invoke FaaS function using the token
             rp(options2)
               .then(function (parsedBody2) {
 
@@ -255,45 +186,12 @@
 
     };
 
-    // function bind() {
-    //   var bindKey = $(".bindInput").val();
-    //   SDK.bind(bindKey, bindSuccess, createCallback('Bind'));
-    // }
-    // function unbind() {
-    //   clearLogger();
-    //   var bindKey = $(".bindInput").val();
-    //   SDK.unbind(bindKey, bindSuccess, createCallback('Unbind'));
-    // }
-
-    // function createCallback(name) {
-    //   return function (error) {
-    //     if (error) {
-    //       getLogFunction('ERROR', 'Error in ' + name + '!')(error);
-    //     } else {
-    //       getLogFunction('INFO', name + ' success!')();
-    //     }
-    //   }
-    // }
 
     function getSuccess(data) {
-      //the below selects an element and adds text by using the .html command
-      // $(".getResults").html(JSON.stringify(data));
-      // getLogFunction('INFO', 'Get success!')(data);
       console.log(data + " the success result")
       getTokenFaas(data);
     }
-    // function bindSuccess(data) {
-    //   $(".bindResults").html(JSON.stringify(data));
-    //   getLogFunction('INFO', 'Bind success!')(data);
-    // }
 
-    // function logger(type, text) {
-    //   if (typeof text === 'object') {
-    //     text = JSON.stringify(text, null, 2);
-    //   }
-    //   var area = $(".logBox textarea");
-    //   area.val(new Date().toTimeString() + ":  " + type + " - " + text + '\n' + area.val());
-    // }
 
   }, { "request-promise": 130 }], 2: [function (require, module, exports) {
     'use strict';

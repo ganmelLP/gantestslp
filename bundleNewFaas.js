@@ -159,7 +159,7 @@
                 try {
                   console.log("Response from FaaS/Maven " + parsedBody2);
 
-                  if (jQuery.isEmptyObject(parsedBody2) == false){
+                  if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 !== "{}")){
 
                   var parseda = JSON.parse(parsedBody2);
 
