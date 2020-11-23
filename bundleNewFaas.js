@@ -164,12 +164,12 @@
                     
                     var parseda = JSON.parse(parsedBody2);
                     console.log("Parsed Result: " + parseda);
-                    
-                    var entries = Object.entries(parseda)
-                    console.log("Object Entries on Result: " +entries)
+
+                    var divdedToEntries = Object.entries(parseda)
+                    console.log("Object Entries on Result: " + divdedToEntries)
 
 
-                    for (const [errFrom, errDetail] of entries) {
+                    for (const [errFrom, errDetail] of divdedToEntries) {
                       console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
                       $(".showMaven").append(`
 
