@@ -164,7 +164,7 @@
                     
 
                     
-                    var parseda = JSON.parse(JSON.stringify(parsedBody2));
+                    var parseda = JSON.parse(parsedBody2);
                     console.log("Parsed Result: " + parseda);
 
                     var divdedToEntries = Object.entries(parseda)
