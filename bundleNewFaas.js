@@ -187,9 +187,9 @@
                     
                     `);
                     }
-                  } else { console.log("Maven result is empty: " + parsedBody2) }
+                  } else { console.log("Maven result is empty: " + parsedBody2 +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + (parsedBody2 !== "{}")) }
 
-                } catch (e) { console.log("err from inside 2nd req" +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + (parsedBody2 !== "{}")); }
+                } catch (e) { console.log("err from inside 2nd req" + e); }
                 return parsedBody2;
 
               })
