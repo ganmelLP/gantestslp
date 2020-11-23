@@ -165,7 +165,7 @@
 
                     
                     var parseda = JSON.parse(parsedBody2);
-                    console.log("Parsed Result: " + parseda);
+                    console.log(parseda);
 
                     var divdedToEntries = Object.entries(parseda)
                     console.log("Object Entries on Result: " + divdedToEntries)
