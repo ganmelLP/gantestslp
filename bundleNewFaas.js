@@ -187,7 +187,7 @@
                     
                     `);
                   }
-                }
+                } else {console.log("Maven result is empty: " + parsedBody2)}
 
                 } catch (e) { console.log("err from inside 2nd req" + e); }
                 return parsedBody2;
