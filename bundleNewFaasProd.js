@@ -1,7 +1,7 @@
 (function () { function r(e, n, t) { function o(i, f) { if (!n[i]) { if (!e[i]) { var c = "function" == typeof require && require; if (!f && c) return c(i, !0); if (u) return u(i, !0); var a = new Error("Cannot find module '" + i + "'"); throw a.code = "MODULE_NOT_FOUND", a } var p = n[i] = { exports: {} }; e[i][0].call(p.exports, function (r) { var n = e[i][1][r]; return o(n || r) }, p, p.exports, r, e, n, t) } return n[i].exports } for (var u = "function" == typeof require && require, i = 0; i < t.length; i++)o(t[i]); return o } return r })()({
   1: [function (require, module, exports) {
     const rp = require('request-promise');
-    
+
 
     var SDK = lpTag.agentSDK || {};
     $(function () {
@@ -26,16 +26,16 @@
 
     window.bindUser = function () {
       SDK.get("chatInfo.rtSessionId", getSuccess, getLogFunction('ERROR', 'Error in get!'));
- 
+
     }
 
-    
+
     window.get = function () {
 
     }
 
 
-    
+
     window.getTokenFaas = async function getTokenFaas(convid) {
       const geTokenURL = "https://lo.sentinel.liveperson.net/sentinel/api/account/90530803/app/token?v=2.0.&grant_type=client_credentials&client_id=7ec1d6f1-cbea-40eb-8525-f9fe93175103&client_secret=hihrvlr1o636neekdkqe30gt0r";
       /**
@@ -55,7 +55,7 @@
         json: true // Automatically stringifies the body to JSON
       };
 
-       //Get Token from FaaS
+      //Get Token from FaaS
       rp(options)
         .then(function (parsedBody) {
           try {
@@ -83,7 +83,7 @@
               //json: true // Automatically stringifies the body to JSON
             };
 
-             // Invoke FaaS function using the token
+            // Invoke FaaS function using the token
             rp(options2)
               .then(function (parsedBody2) {
 
@@ -92,8 +92,8 @@
 
                   var parseda = JSON.parse(parsedBody2);
 
-                 const entries = Object.entries(parseda)
-                 console.log(entries)
+                  const entries = Object.entries(parseda)
+                  console.log(entries)
 
                   for (const [errFrom, errDetail] of entries) {
                     console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
@@ -193,7 +193,16 @@
     }
 
 
-  }, { "request-promise": 130 }], 2: [function (require, module, exports) {
+  },
+
+
+  // IGNORE BELOW, browserify work from node.js modules
+  // IGNORE BELOW, browserify work from node.js modules
+  // IGNORE BELOW, browserify work from node.js modules
+  // IGNORE BELOW, browserify work from node.js modules
+
+
+  { "request-promise": 130 }], 2: [function (require, module, exports) {
     'use strict';
 
     var compileSchema = require('./compile')
