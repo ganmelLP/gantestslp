@@ -108,7 +108,7 @@
     }
     //module.exports = get;
     window.getTokenFaas = async function getTokenFaas(convid) {
-      const geTokenURL = "https://lo.sentinel.liveperson.net/sentinel/api/account/8300697/app/token?v=2.0.&grant_type=client_credentials&client_id=4a17add4-56ee-4954-a3ab-7e7b260ffcef&client_secret=5a9vv63k4aun1k5np0s08vn499";
+      const geTokenURL = "https://lo.sentinel.liveperson.net/sentinel/api/account/90530803/app/token?v=2.0.&grant_type=client_credentials&client_id=7ec1d6f1-cbea-40eb-8525-f9fe93175103&client_secret=hihrvlr1o636neekdkqe30gt0r";
       /**
        * arguments: String array of command arguments.
        * conversationId: The ID of the conversation in which the command was called.
@@ -136,7 +136,7 @@
 
             var options2 = {
               method: 'POST',
-              uri: "https://lo.faasgw.liveperson.net/api/account/8300697/lambdas/5cd4ef50-5711-4d77-bfbf-876e1da07a96/invoke?v=1",
+              uri: "https://lo.faasgw.liveperson.net/api/account/90530803/lambdas/e79f6a72-6445-474a-bd09-b4b489b7ac74/invoke?v=1",
               headers: {
                 'Content-Type': 'application/json',
                 'Authorization': token
@@ -159,14 +159,11 @@
                 try {
                   console.log("Response from FaaS/Maven " + parsedBody2);
 
-                  if (jQuery.isEmptyObject(parsedBody2) == false){
-
                   var parseda = JSON.parse(parsedBody2);
 
                  const entries = Object.entries(parseda)
                  console.log(entries)
-                
-                 
+
                   for (const [errFrom, errDetail] of entries) {
                     console.log(`Error came from: ${errFrom}, the error details: ${errDetail}`)
                     $(".showMaven").append(`
@@ -187,7 +184,6 @@
                     
                     `);
                   }
-                }
 
                 } catch (e) { console.log("err from inside 2nd req" + e); }
                 return parsedBody2;
@@ -207,7 +203,7 @@
 
     };
     window.getErrs = async function getErrs(convId) {
-      const getErrsURL = "https://lo.faasgw.liveperson.net/api/account/8300697/lambdas/5cd4ef50-5711-4d77-bfbf-876e1da07a96/invoke?v=1";
+      const getErrsURL = "https://lo.faasgw.liveperson.net/api/account/90530803/lambdas/e79f6a72-6445-474a-bd09-b4b489b7ac74/invoke?v=1";
 
       /**
        * arguments: String array of command arguments.
