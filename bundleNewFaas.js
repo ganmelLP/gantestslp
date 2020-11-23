@@ -127,7 +127,7 @@
       };
 
       rp(options)
-        .then(async function (parsedBody) {
+        .then(function (parsedBody) {
           try {
             var tokenResultString = window.JSON.stringify(parsedBody);
             var tokenFullResult = window.JSON.parse(tokenResultString);
@@ -154,7 +154,7 @@
             };
 
             rp(options2)
-              .then(async function (parsedBody2) {
+              .then(function (parsedBody2) {
 
                 try {
                   console.log("Response from FaaS/Maven: " + parsedBody2);
@@ -162,10 +162,12 @@
                   if ((jQuery.isEmptyObject(parsedBody2) == false) && (parsedBody2 == '"{}"') == false ) {
                     console.log("Maven result NOT EMPTY: " + parsedBody2 +", isobjectempty: " + jQuery.isEmptyObject(parsedBody2) + " , is just empty paranthesis: " + (parsedBody2 == '"{}"'));
                     
-                    var parseda = await JSON.parse(parsedBody2);
+
+                    
+                    var parseda = JSON.parse(JSON.stringify(parsedBody2));
                     console.log("Parsed Result: " + parseda);
 
-                    var divdedToEntries = await Object.entries(JSON.parse(parsedBody2))
+                    var divdedToEntries = Object.entries(parseda)
                     console.log("Object Entries on Result: " + divdedToEntries)
 
 
