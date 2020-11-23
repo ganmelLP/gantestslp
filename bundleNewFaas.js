@@ -165,7 +165,7 @@
                     var parseda = await JSON.parse(parsedBody2);
                     console.log("Parsed Result: " + parseda);
 
-                    var divdedToEntries = await Object.entries(parseda)
+                    var divdedToEntries = await Object.entries(JSON.parse(parsedBody2))
                     console.log("Object Entries on Result: " + divdedToEntries)
 
 
