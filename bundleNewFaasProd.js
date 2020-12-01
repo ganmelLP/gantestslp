@@ -44,7 +44,7 @@
 
 
     window.getTokenFaas = async function getTokenFaas(convid) {
-      const geTokenURL = "https://lo.sentinel.liveperson.net/sentinel/api/account/90530803/app/token?v=2.0.&grant_type=client_credentials&client_id=7ec1d6f1-cbea-40eb-8525-f9fe93175103&client_secret=hihrvlr1o636neekdkqe30gt0r";
+      const geTokenURL = "";
       /**
        * arguments: String array of command arguments.
        * conversationId: The ID of the conversation in which the command was called.
